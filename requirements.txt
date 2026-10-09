@@ -1,0 +1,32 @@
+# DCS 404 - Final Project Dependencies
+# Machine Learning-Based Spam Message Detection (with SMOTE & Transformers)
+
+# Core scientific computing & data manipulation
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Machine learning & class imbalance
+scikit-learn>=1.3.0
+imbalanced-learn>=0.11.0
+joblib>=1.3.0
+
+# Deep Learning & Transformers
+torch>=2.0.0
+transformers>=4.35.0
+
+# Visualization & Word Clouds
+matplotlib>=3.7.0
+seaborn>=0.12.0
+wordcloud>=1.9.0
+
+# Web Application UI
+streamlit>=1.30.0
+
+# Notebook execution & reporting
+nbformat>=5.9.0
+nbclient>=0.8.0
+ipykernel>=6.25.0
+jupyter>=1.0.0
+
+# Presentation generation
+python-pptx>=0.6.21

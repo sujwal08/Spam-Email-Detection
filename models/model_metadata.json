@@ -1,0 +1,65 @@
+{
+    "dataset": "UCI SMS Spam Collection",
+    "total_samples": 5169,
+    "ham_count": 4516,
+    "spam_count": 653,
+    "train_size": 4135,
+    "test_size": 1034,
+    "train_before_smote": {
+        "ham": 3613,
+        "spam": 522
+    },
+    "train_after_smote": {
+        "ham": 3613,
+        "spam": 3613
+    },
+    "best_model": "DistilBERT",
+    "metrics": [
+        {
+            "Model": "Logistic Regression (SMOTE)",
+            "Category": "Traditional ML",
+            "Accuracy": 0.9729206963249516,
+            "Precision": 0.8872180451127819,
+            "Recall": 0.9007633587786259,
+            "F1-Score": 0.8939393939393939,
+            "ROC-AUC": 0.9902783765734237,
+            "Train Time (s)": 0.0519,
+            "Inference Time (ms/sample)": 0.0008
+        },
+        {
+            "Model": "Multinomial Naive Bayes",
+            "Category": "Traditional ML",
+            "Accuracy": 0.9806576402321083,
+            "Precision": 0.9826086956521739,
+            "Recall": 0.8625954198473282,
+            "F1-Score": 0.9186991869918699,
+            "ROC-AUC": 0.9896612648254757,
+            "Train Time (s)": 0.0119,
+            "Inference Time (ms/sample)": 0.0008
+        },
+        {
+            "Model": "DistilBERT",
+            "Category": "Transformer",
+            "Accuracy": 0.988394584139265,
+            "Precision": 0.9541984732824428,
+            "Recall": 0.9541984732824428,
+            "F1-Score": 0.9541984732824428,
+            "ROC-AUC": 0.9974892850802668,
+            "Train Time (s)": 2849.0,
+            "Inference Time (ms/sample)": 71.334
+        },
+        {
+            "Model": "DistilRoBERTa",
+            "Category": "Transformer",
+            "Accuracy": 0.988394584139265,
+            "Precision": 0.976,
+            "Recall": 0.9312977099236641,
+            "F1-Score": 0.953125,
+            "ROC-AUC": 0.9993068059817571,
+            "Train Time (s)": 2849.0,
+            "Inference Time (ms/sample)": 70.1735
+        }
+    ],
+    "feature_extractor": "TF-IDF (ngram_range=(1,2), max_features=5000, stop_words=\"english\")",
+    "smote_configuration": "SMOTE(random_state=42) on training TF-IDF only"
+}

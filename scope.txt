@@ -1,0 +1,361 @@
+DCS 404: AI & Machine Learning | Project Scope Specification
+
+DCS 404: ARTIFICIAL INTELLIGENCE & MACHINE LEARNING | FINAL PROJECT
+
+Project Scope Specification: Machine Learning &
+Transformer-Based Spam Message Detection
+Version: 2.0 (Updated per Professor Feedback) | Author: Sujal | Institution: Westcliff University | Date: Fall 2026
+Course & Degree Program
+
+DCS 404 - Artificial Intelligence & Machine Learning (MS/BS Computer Science)
+
+Project Classification
+
+Supervised Text Classification, Class Imbalance Remediation & NLP Transformers
+
+Core Technical Stack
+
+Python 3.10+, scikit-learn, imbalanced-learn (SMOTE), PyTorch, Hugging Face
+Transformers, Streamlit
+
+Primary Deliverables
+
+Updated Colab/Jupyter Notebook, Serialized Models, 7-Section Streamlit App, 8Slide Presentation & Scope/Guide Docs
+
+1. Executive Summary & Project Purpose
+This Project Scope document establishes the updated functional, architectural, and methodological requirements for the
+DCS 404 final project: Machine Learning & Transformer-Based Spam Message Detection. Following formal review and
+professor feedback (update.md), the project has transitioned from an initial single-model baseline to a comprehensive,
+production-ready Natural Language Processing (NLP) benchmark that addresses real-world machine learning
+challenges: class imbalance, data leakage prevention, lexical pattern discovery, deep transformer sequence modeling,
+and interactive deployment.
+The primary objective is to build, evaluate, and deploy an end-to-end system that classifies user-submitted text
+messages as either legitimate communications (Ham) or unsolicited fraudulent messages (Spam). The system
+synthesizes the complete DCS 404 curriculum: exploratory data analysis, text feature engineering (TF-IDF), class
+imbalance remediation using Synthetic Minority Over-sampling Technique (SMOTE), traditional statistical learning
+(Logistic Regression and Multinomial Naive Bayes), fine-tuned state-of-the-art transformer architectures (DistilBERT
+and DistilRoBERTa), and an interactive 7-section Streamlit dashboard with real-time inference scoring.
+Key Milestone Enhancements
+Professor Feedback Updates (update.md):
+• Handle Class Imbalance with SMOTE: Apply SMOTE strictly to training features; maintain zero leakage on test data.
+• Traditional Classifiers: Use Logistic Regression as the main SMOTE model; analyze why SMOTE impacts Naive Bayes.
+• Deep Transformer Models: Fine-tune DistilBERT and DistilRoBERTa in Google Colab for sequence classification.
+• Exploratory Analytics: Generate high-resolution Spam and Ham Word Clouds and message length distributions.
+• Multi-Dimensional Benchmark: Evaluate Accuracy, Precision, Recall, F1, Latency, and Architectural Trade-Offs.
+• Streamlit UI Enhancement: Expand interface into 7 structured sections with an interactive live testing playground.
+
+2. Project Objectives
+• Data Preparation & Hygiene: Clean the raw UCI SMS Spam Collection (5,572 records), verify zero null entries, and
+prune 403 exact duplicates to yield 5,169 distinct messages (4,516 Ham [87.4%], 653 Spam [12.6%]).
+• Rigorous Anti-Leakage Protocol: Perform stratified 80/20 partitioning (4,135 train / 1,034 test) prior to vectorization.
+Fit TfidfVectorizer strictly on training text to eliminate target leakage into the test set.
+• Class Imbalance Remediation via SMOTE: Apply SMOTE exclusively to the training TF-IDF matrix, synthetically
+balancing 3,613 Ham and 522 Spam samples to an equal 3,613:3,613 distribution, while preserving the test set in its
+authentic natural state.
+
+Westcliff University - College of Technology & Engineering | Author: Sujal
+
+DCS 404: AI & Machine Learning | Project Scope Specification
+
+• Traditional Machine Learning Benchmarking: Train Logistic Regression as the primary SMOTE-based classifier
+and evaluate Multinomial Naive Bayes, providing mathematical explanations of how SMOTE affects linear margins
+versus Bayesian priors.
+• Transformer Fine-Tuning: Fine-tune pre-trained DistilBERT and DistilRoBERTa sequence classification models with
+GPU acceleration in Google Colab, leveraging multi-head self-attention to capture bidirectional sentence context.
+• Lexical Pattern Analytics: Generate distinct Spam and Ham Word Clouds alongside character length distributions to
+provide visual explainability of prominent fraud triggers and legitimate conversational vocabulary.
+• Empirical Evaluation & Trade-Off Analysis: Calculate Accuracy, Precision, Recall, F1-Score, ROC-AUC, and
+inference latency across all four models on 1,034 held-out test samples. Formulate a multi-dimensional trade-off
+decision framework.
+• Production Web Deployment: Deliver an intuitive 7-section Streamlit web application (app.py) enabling interactive
+dataset exploration, comparative visualization, and real-time live message classification with confidence scores.
+
+3. Alignment with DCS 404 Course Curriculum
+The project directly maps theoretical and practical competencies taught throughout Weeks 1 through 8 of the DCS 404
+course outline:
+Course Topic / Week
+
+Application in Project
+
+Empirical Evidence & Implementation
+
+Weeks 1–2: Python &
+Data Preparation
+
+Data cleaning, deduplication, length
+analysis, text tokenization.
+
+Cleaned 5,169 distinct records; zero nulls; length
+distribution plots.
+
+Week 3: Feature
+Engineering &
+Imbalance
+
+TF-IDF feature extraction (5,000 terms),
+SMOTE oversampling.
+
+Fitted TF-IDF on train only; SMOTE balanced train set
+3,613:3,613; zero test leakage.
+
+Weeks 4–5: Supervised
+Classification
+
+Binary classification modeling log-odds and
+Bayesian likelihoods.
+
+Logistic Regression (C=2.0) + SMOTE and
+Multinomial Naive Bayes (alpha=0.2).
+
+Week 7: Deep Learning
+& Neural Models
+
+Contextual transformer sequence modeling
+using self-attention.
+
+Fine-tuned DistilBERT (66M params) and
+DistilRoBERTa (82M params) in Colab GPU.
+
+Week 8: Model
+Evaluation &
+Deployment
+
+Multi-metric evaluation, latency profiling,
+Streamlit deployment.
+
+Test evaluation (N=1,034); confusion matrices; 7section Streamlit UI; 8-slide presentation.
+
+4. Dataset Specifications & Data Hygiene
+The project utilizes the canonical UCI SMS Spam Collection repository (Almeida & Hidalgo). The dataset represents
+authentic mobile text messages collected from Singapore National University corpora, UK spam SMS complaints, and
+the Grumbletext website.
+• Total Raw Records: 5,572 rows (4,825 raw ham, 747 raw spam).
+• Deduplication: 403 exact duplicate messages were removed to eliminate artificial frequency bias and memorization.
+• Cleaned Dataset Size: 5,169 unique samples (4,516 Ham [87.37%], 653 Spam [12.63%]).
+• Train/Test Partition: Stratified 80/20 split -> Training: 4,135 samples (3,613 Ham, 522 Spam); Test: 1,034 samples
+(903 Ham, 131 Spam).
+• SMOTE Balanced Training Partition: 7,226 samples (3,613 Ham, 3,613 Spam), achieved strictly in TF-IDF feature
+space.
+
+5. Functional Scope: In-Scope vs. Out-of-Scope
+To ensure project success within academic time constraints while fulfilling the professor's advanced feedback, the
+functional boundaries are defined below:
+Westcliff University - College of Technology & Engineering | Author: Sujal
+
+DCS 404: AI & Machine Learning | Project Scope Specification
+
+IN-SCOPE (Fully Implemented & Verified)
+
+OUT-OF-SCOPE (Deferred to Future Work)
+
+✓ UCI SMS Spam Collection ingestion and deduplication
+
+✗ Real-time integration with live Gmail/Outlook inboxes
+
+✓ Strict anti-data leakage stratified 80/20 train/test partitioning
+
+✗ Automated email deletion or moving files without review
+
+✓ TF-IDF feature extraction (5,000 n-grams, stopword filtering)
+
+✗ Heavyweight billion-parameter LLMs (e.g., Llama-3 70B,
+GPT-4)
+
+✓ SMOTE oversampling applied strictly to training features
+
+✗ Production multi-tenant database user accounts & login
+
+✓ Logistic Regression (with SMOTE) as primary linear classifier
+
+✗ Online continuous active learning / automatic retraining
+
+✓ Multinomial Naive Bayes with SMOTE compatibility analysis
+
+✗ Complex multi-modal attachment analysis (PDF/EXE
+inspection)
+
+✓ Fine-tuned DistilBERT & DistilRoBERTa sequence
+classification
+
+✗ Multi-lingual translation pipeline for non-English texts
+
+✓ Spam and Ham Word Clouds and character length
+visualizations
+
+✗ Native iOS / Android mobile application compilation
+
+✓ 7-Section Streamlit interactive web dashboard with live demo
+
+✗ Paid enterprise SaaS security compliance audits
+
+6. Technical Architecture & End-to-End Pipeline
+The project implements two distinct, parallel modeling workflows unified under a shared evaluation and deployment
+framework:
+┌──────────────────────────────────────────────┐
+│
+UCI SMS Spam Collection (5,169 Rows)
+│
+└──────────────────────┬───────────────────────┘
+│
+Stratified 80/20 Train/Test Split
+│
+┌───────────────────────┴───────────────────────┐
+│ 80% Train (4,135)
+20% Test (1,034) │
+└───────────┬───────────────────────────┬───────┘
+│
+│
+Fit TF-IDF (Training Only)
+│ (Untouched Authentic Distribution)
+│
+│
+Transform Train Features
+│
+│
+│
+Apply SMOTE (Training Only)
+│
+(3,613 Ham : 3,613 Spam)
+│
+│
+│
+┌──────────────────┴──────────────────┐
+│
+▼
+▼
+│
+Traditional ML Pipeline
+Transformer Pipeline
+│
+• Logistic Regression (SMOTE)
+• DistilBERT
+│
+• Multinomial Naive Bayes
+• DistilRoBERTa
+│
+│
+│
+│
+└──────────────────┬──────────────────┘
+│
+▼
+▼
+Held-Out Empirical Benchmark (N = 1,034)
+(Accuracy, Precision, Recall, F1, Latency, ROC)
+│
+▼
+7-Section Production Streamlit Dashboard
+(app.py - Interactive Live Prediction Engine)
+
+Westcliff University - College of Technology & Engineering | Author: Sujal
+
+DCS 404: AI & Machine Learning | Project Scope Specification
+
+7. Empirical Benchmark & Trade-Off Matrix
+All four models were trained and benchmarked on the identical 1,034 held-out test split (903 Ham, 131 Spam). Results
+are summarized below:
+Model Architecture
+
+Category
+
+Accuracy
+
+Precision
+
+Recall
+
+F1-Score
+
+ROC-AUC
+
+DistilBERT
+
+Transformer
+
+98.84%
+
+95.42%
+
+95.42%
+
+95.42%
+
+0.9975
+
+DistilRoBERTa
+
+Transformer
+
+98.84%
+
+97.60%
+
+93.13%
+
+95.31%
+
+0.9993
+
+Multinomial Naive Bayes
+
+Traditional ML
+
+98.07%
+
+98.26%
+
+86.26%
+
+91.87%
+
+0.9897
+
+Logistic Regression (SMOTE)
+
+Traditional ML
+
+97.29%
+
+88.72%
+
+90.08%
+
+89.39%
+
+0.9903
+
+Operational Evaluation: Trade-Off Analysis Insights:
+• Latency Disparity: Traditional ML executes inference in 0.0008 ms/sample (~1.25M messages/sec). Transformers
+require 70-71 ms/sample (~14 messages/sec on CPU) — a 90,000x latency advantage for traditional ML.
+• Compute & Training: Traditional models train in under 0.05 seconds. Transformers require ~45 minutes of CPU
+execution or 3 minutes on GPU.
+• Decision Rule: Deploy Naive Bayes or Logistic Regression for real-time telecom switches; deploy DistilBERT for highvalue enterprise email auditing.
+
+8. Streamlit User Interface Specification
+The web application is structured into 7 dedicated sections accessible via a navigation sidebar:
+• Section 1. Home: Executive introduction, project scope, and end-to-end architecture pipeline diagrams.
+• Section 2. Dataset Overview: Summary cards (5,169 records, 87.4% Ham, 12.6% Spam), raw data samples, and
+deduplication audit metrics.
+• Section 3. Data Exploration: Interactive class distribution plots, SMOTE balancing diagrams, and character/word
+length histograms.
+• Section 4. Spam & Ham Word Clouds: Side-by-side high-resolution word clouds displaying key fraud triggers versus
+conversational ham lexicons.
+• Section 5. Model Performance: Detailed breakdown for each model: Confusion Matrices, Classification Reports, and
+ROC curves.
+• Section 6. Model Comparison: Multi-metric comparative bar charts (Accuracy, Precision, Recall, F1) and operational
+latency benchmark tables.
+• Section 7. Live Spam Prediction: Interactive playground: users paste custom messages, select any of the 4 models,
+click 'Analyze Message', and view real-time SPAM/HAM prediction cards with confidence meters.
+
+9. Deliverables & Definition of Done
+The project is considered complete when all of the following verified artifacts are provided:
+1. Training Notebook (notebooks/training.ipynb): Fully executable from top-to-bottom in Google Colab and Jupyter.
+2. Streamlit Application (app.py): Clean, professional multi-section interface running locally via 'streamlit run app.py'.
+3. Serialized Models (models/): Exported pipelines (joblib/pkl) and Hugging Face transformer checkpoints (safetensors).
+4. Visual Assets (assets/ & figures/): Word clouds, confusion matrices, ROC curves, and comparative bar charts.
+5. Presentation Deliverables (presentation/): 8-slide PowerPoint (.pptx), PDF version (.pdf), and detailed script (.md).
+6. Comprehensive Documentation: Updated README.md, Project Scope PDF/txt, and Project Guide PDF/txt.
+
+Westcliff University - College of Technology & Engineering | Author: Sujal
+
+
